@@ -11,10 +11,14 @@
       text-align: center;
       padding: 20px;
       color: #fbc02d;
+      margin: 0;
+      overflow-x: hidden;
+      position: relative;
     }
     h1 {
       font-size: 2.5em;
       color: #f57f17;
+      margin-top: 10px;
     }
     .gallery {
       display: flex;
@@ -22,15 +26,53 @@
       justify-content: center;
       gap: 15px;
       margin-top: 20px;
+      margin-bottom: 30px;
     }
     .gallery img {
       width: 100%;
       max-width: 300px;
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      object-fit: cover;
     }
     .flower-icon {
       font-size: 50px;
+    }
+    .love-message {
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid #fbc02d;
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 30px auto 40px auto;
+      color: #d84315;
+      font-size: 1.15em;
+      line-height: 1.6;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-weight: bold;
+    }
+
+    /* Animación de lluvia de flores amarillas */
+    .flower-rain {
+      position: fixed;
+      top: -10%;
+      user-select: none;
+      pointer-events: none;
+      z-index: 9999;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.2;
+      }
     }
   </style>
 </head>
@@ -41,19 +83,44 @@
   <p>Para la persona más especial, unas flores amarillas y nuestros mejores momentos.</p>
 
   <div class="gallery">
-  <!-- Imágenes individuales con su ruta a la carpeta Flores -->
-  <img src="Flores/0dbc6eb5-a33c-4fe1-9001-1168e9d8601b.jpg" alt="Nosotros 1">
-  <img src="Flores/1dac4802-db67-479a-ab13-d54531b7450e.jpg" alt="Nosotros 2">
-  <img src="Flores/4ce942cd-0aef-4631-9569-cbed5ada7309.jpg" alt="Nosotros 3">
-  <img src="Flores/74fc999d-e0aa-4b65-bd1e-6f2ae90155bb.jpg" alt="Nosotros 4">
-  <img src="Flores/582368bb-42c5-4b84-ac9b-03c19551bf20.jpg" alt="Nosotros 5">
-  <img src="Flores/e0477460-3271-4d06-91a1-fa1d6a6e71be.jpg" alt="Nosotros 6">
-  <img src="Flores/ea49ff98-ee09-46b4-ba14-7ab0b52eaf39.jpg" alt="Nosotros 7">
-  
-  <!-- Agregada la carpeta Flores/ a las últimas dos imágenes -->
-  <img src="Flores/640w-EnLK-7yZMrc.jpg" alt="Flores amarillas 1">
-  <img src="Flores/images.jpg" alt="Flores amarillas 2">
-</div>
+    <!-- Tus fotos con la ruta correcta -->
+    <img src="Flores/0dbc6eb5-a33c-4fe1-9001-1168e9d8601b.jpg" alt="Nosotros 1">
+    <img src="Flores/1dac4802-db67-479a-ab13-d54531b7450e.jpg" alt="Nosotros 2">
+    <img src="Flores/4ce942cd-0aef-4631-9569-cbed5ada7309.jpg" alt="Nosotros 3">
+    <img src="Flores/74fc999d-e0aa-4b65-bd1e-6f2ae90155bb.jpg" alt="Nosotros 4">
+    <img src="Flores/582368bb-42c5-4b84-ac9b-03c19551bf20.jpg" alt="Nosotros 5">
+    <img src="Flores/e0477460-3271-4d06-91a1-fa1d6a6e71be.jpg" alt="Nosotros 6">
+    <img src="Flores/ea49ff98-ee09-46b4-ba14-7ab0b52eaf39.jpg" alt="Nosotros 7">
+  </div>
+
+  <!-- Mensaje especial -->
+  <div class="love-message">
+    "en las buenas en las malas y en las peores siempre estaré a tu lado por qué te amo y la promesa más grande que siempre te haré será mi amor y fidelidad hacia ti, te amo olimar victoria bao Dávila eres mi vida y siempre estaré a tu lado feliz 21 de septiembre"
+  </div>
+
+  <!-- Script para generar las flores cayendo -->
+  <script>
+    function createFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower-rain');
+      
+      const flowers = ['🌻', '🟡', '🌼', '✨'];
+      flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+      
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = Math.random() * 3 + 2 + 's'; // Entre 2 y 5 segundos
+      flower.style.fontSize = Math.random() * 20 + 15 + 'px'; // Tamaños variados
+      
+      document.body.appendChild(flower);
+
+      setTimeout(() => {
+        flower.remove();
+      }, 5000);
+    }
+
+    // Generar una flor cada 250ms
+    setInterval(createFlower, 250);
+  </script>
 
 </body>
 </html>
